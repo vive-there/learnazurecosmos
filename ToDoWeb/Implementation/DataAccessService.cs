@@ -21,24 +21,37 @@ namespace ToDoWeb.Implementation
             await _container.CreateItemAsync<Item>(item, new PartitionKey(item.Id));
         }
 
-        public Task DeleteItemAsync(string id)
+        public async Task DeleteItemAsync(string id)
         {
-            throw new NotImplementedException();
+            await _container.DeleteItemAsync<Item>(id, new PartitionKey(id));
         }
 
-        public Task<Item> GetItemAsync(string id)
+        public async Task<Item> GetItemAsync(string id)
         {
-            throw new NotImplementedException();
+            ItemResponse<Item> itemResponse = await _container.ReadItemAsync<Item>(id, new PartitionKey(id));
+            return itemResponse;
         }
 
-        public Task<IEnumerable<Item>> GetItemsAsync(string query)
+        public async Task<IEnumerable<Item>> GetItemsAsync(string query)
         {
-            throw new NotImplementedException();
+            List<Item> items = new List<Item>();
+
+            var queryIterator = _container.GetItemQueryIterator<Item>(
+                new QueryDefinition(query)
+                );
+
+            while(queryIterator.HasMoreResults)
+            {
+                var response = await queryIterator.ReadNextAsync();
+                items.AddRange(response.ToList());
+            }    
+
+            return items;
         }
 
-        public Task UpdateItemAsync(string id, Item item)
+        public async Task UpdateItemAsync(string id, Item item)
         {
-            throw new NotImplementedException();
+            await this._container.UpsertItemAsync<Item>(item, new PartitionKey(id));
         }
     }
 }

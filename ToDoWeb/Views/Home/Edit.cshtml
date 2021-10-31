@@ -1,20 +1,19 @@
 ﻿@model ToDoWeb.Models.Item
 
 @{
-    ViewData["Title"] = "New";
+    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>New</h1>
+<h1>Edit</h1>
 
-<h4>Item</h4>
+<h4>Task</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="New" method="post">
-            <input type="hidden" asp-for="Id" />
+        <form asp-action="Edit">
+            @Html.HiddenFor(m => m.Id)
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -25,13 +24,14 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsCompleted" /> @Html.DisplayNameFor(model => model.IsCompleted)
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-outline-success" />
+                <input type="submit" value="Save" class="btn btn-outline-primary" />
             </div>
         </form>
     </div>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Logging;
 
 using System;
@@ -23,9 +24,9 @@ namespace ToDoWeb.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            return View();
+            return View(await dataAccessService.GetItemsAsync("SELECT * FROM c"));
         }
 
         [HttpGet]
@@ -42,6 +43,64 @@ namespace ToDoWeb.Controllers
 
             item.Id = Guid.NewGuid().ToString();
             await dataAccessService.AddItemAsync(item);
+            return Redirect("/");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteAsync(string id)
+        {
+            if ( string.IsNullOrWhiteSpace(id) )
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                return View( await dataAccessService.GetItemAsync(id));
+            }
+            catch(CosmosException e) when (e.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return NotFound();
+            }
+
+            throw new Exception();
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmedAsync([Bind("id")]string id)
+        {
+            await dataAccessService.DeleteItemAsync(id);
+            return Redirect("/");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                return View(await dataAccessService.GetItemAsync(id));
+            }
+            catch (CosmosException e) when (e.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return NotFound();
+            }
+
+            throw new Exception();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Edit")]
+        public async Task<IActionResult> EditTask([Bind("Id,Name,Description,IsCompleted")] Item item)
+        {
+            await dataAccessService.UpdateItemAsync(item.Id, item);
             return Redirect("/");
         }
 
