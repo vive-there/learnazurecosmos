@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ToDoWeb.Interface;
 using ToDoWeb.Models;
 using Microsoft.Azure.Cosmos;
+using Model;
 
 namespace ToDoWeb.Implementation
 {
