@@ -2,6 +2,8 @@
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Logging;
 
+using Model;
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoWeb", "ToDoWeb\ToDoWeb.csproj", "{C3E8E20F-3944-4F1C-9E41-8ADA9A74EA99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoFeedFunc", "ToDoFeedFunc\ToDoFeedFunc.csproj", "{2E7214B2-246A-4AF4-857C-BE9DF6DC72B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoFeedFunc", "ToDoFeedFunc\ToDoFeedFunc.csproj", "{2E7214B2-246A-4AF4-857C-BE9DF6DC72B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoHttpFunc", "ToDoHttpFunc\ToDoHttpFunc.csproj", "{0BF5D4FE-EC25-4B86-AD58-405477D70D29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{CA4CD028-CC95-4C4C-BB0F-9EBC331F7462}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{2E7214B2-246A-4AF4-857C-BE9DF6DC72B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E7214B2-246A-4AF4-857C-BE9DF6DC72B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E7214B2-246A-4AF4-857C-BE9DF6DC72B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BF5D4FE-EC25-4B86-AD58-405477D70D29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BF5D4FE-EC25-4B86-AD58-405477D70D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BF5D4FE-EC25-4B86-AD58-405477D70D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BF5D4FE-EC25-4B86-AD58-405477D70D29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA4CD028-CC95-4C4C-BB0F-9EBC331F7462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA4CD028-CC95-4C4C-BB0F-9EBC331F7462}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA4CD028-CC95-4C4C-BB0F-9EBC331F7462}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA4CD028-CC95-4C4C-BB0F-9EBC331F7462}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
